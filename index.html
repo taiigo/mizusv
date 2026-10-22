@@ -3546,14 +3546,12 @@ const wispservers = ["wss://mizu.optionschools.cfd/wispr/", "wss://ongoingeducat
 window.MIZU_WISP_SERVERS = wispservers;
 window.MIZU_API_SERVERS = ["https://mizu.optionschools.cfd", "https://ongoingeducation.online"];
 
-const SITE_BASE = "https://mizumath.com";
-const SITE_LOCAL = location.hostname === "mizumath.com" || location.hostname.endsWith(".mizumath.com");
+const SITE_LOCAL = true;
 const MIZU_SETTINGS_URL = window.__mizuSettingsURL || "";
 function siteurl(url) {
-    if (typeof url !== "string" || !url.startsWith("/") || url.startsWith("//")) return url;
     if (url === "/settings.html" && MIZU_SETTINGS_URL) return MIZU_SETTINGS_URL;
-    if (SITE_LOCAL) return url;
-    return SITE_BASE + url;
+    if (url === (window.__mizuNewtabURL || "/newtab.html")) return window.__mizuNewtabURL || url;
+    return url;
 }
 const MIZU_ROOT = location.pathname.slice(0, location.pathname.lastIndexOf("/") + 1);
 
